@@ -5,6 +5,9 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "antd/dist/antd.dark.css";
 import { BrowserRouter as Router } from "react-router-dom";
+import axios from "axios";
+
+
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

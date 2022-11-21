@@ -4,8 +4,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const NavUser = () => {
+  const role = localStorage.getItem("role");
   const user = {
-    fullName: "Hussain Shimaz",
+    fullName: localStorage.getItem("user"),
+  };
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("role");
+    window.location.href = "/login";
   };
   return (
     <Dropdown
@@ -19,9 +27,19 @@ const NavUser = () => {
           </Menu.Item>
           <Menu.Divider />
           <Menu.Item>
-            <Link to="/mybookings">My Bookings</Link>
+            <Link to="/">Dashboard</Link>
           </Menu.Item>
-          <Menu.Item key={2}>
+         { 
+         
+         role === "admin" ? (
+         <Menu.Item>
+            <Link to="/reports">Reporting</Link>
+          </Menu.Item>) :
+          (<Menu.Item>
+          <Link to="/mybookings">My Bookings</Link>
+        </Menu.Item>)
+          }
+          <Menu.Item key={2} onClick={logout}>
             <LogoutOutlined /> Logout
           </Menu.Item>
         </Menu>
